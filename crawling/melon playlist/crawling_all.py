@@ -20,10 +20,12 @@ for i in range(2,46986): #tag 2~46985까지 있었음
         html = driver.page_source
         soup1 = bs(html,'html.parser')
         ply_name=soup1.find_all('div',class_='entry')
-    
+        
+        if(len(ply_name)==0): #playlist개수가 10000개보다 작은 경
+            break;
+        
         for ply in ply_name:
             ply_delete=ply.find('a',class_='ellipsis album_name').text.translate({ ord('\n'): '',ord('\t'): '',ord('\r'): '' })#앞뒤로 붙어있던 공백들 제거
-            
             # 플레이리스트 이름이 너무 많기 때문에 공백을 제외하고 특수문자가 있는 경우는 아예 list에 포함시키지 않을 예정
             # R&B같은 경우 &과 같은 특수문자를 없애 버리면 생성에 어려움을 겪을 것으로 예상하여 아예 추가하지 않을 것임
             delete_space=ply_delete.translate({ ord(' '): ''})
