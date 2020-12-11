@@ -3,7 +3,7 @@
 ---
 - [데이터 수집](#데이터-수집)
 ---
-# 데이터 수집
+## 데이터 수집
 ### - 태그별 플레이리스트 목록 크롤링  
 [`crawling_all.py`](https://github.com/minji-o-j/KoGPT2-finetuning/blob/main/crawling/melon%20playlist/crawling_all.py) : 크롤링 사용 코드
 <br><br>
