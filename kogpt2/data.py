@@ -50,8 +50,8 @@ class Read_Dataset(Dataset):
 		self.tokenizer = tokenizer
 		file = open(self.file_path, 'r', encoding='utf-8')
 
-		df = pd.read_csv(self.file_path)
-
+		#df = pd.read_csv(self.file_path)
+		df = pd.read_csv(self.file_path)#,delimiter='\t') #tsv
 		datasets = []
 		for _, row in df.iterrows():
 			datasets.append([row["playlist"]])#[row["playlist"], row["genre"], row["weight"]])
@@ -60,15 +60,16 @@ class Read_Dataset(Dataset):
 		for line in datasets:
 			if not line[0]:
 				break
+			#print(len(line[0]))
 			if len(line[0]) < 3:
 				continue
 			toeknized_line = tokenizer(line[0][:-1])
 
 			index_of_words = [vocab[vocab.bos_token], ] + vocab[toeknized_line] + [vocab[vocab.eos_token]]
-			#print(len(index_of_words),index_of_words)
+			#print(len(index_of_words))
 			if len(index_of_words) > 25: #25
 				continue
-			elif len(index_of_words) < 7: #5
+			elif len(index_of_words) < 7: #5 #7
 				continue
 
 			#print(len(index_of_words))
